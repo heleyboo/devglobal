@@ -19,7 +19,7 @@ import {
     Redirect
   } from 'react-router-dom'
 
-export default class Signup extends Component {
+export default class Login extends Component {
     
     constructor(props) {
         super(props);
@@ -27,7 +27,7 @@ export default class Signup extends Component {
             tenantId: '',
             email: '',
             password: '',
-            redirect: false
+            loginSuccess: false
         };
     
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -35,7 +35,7 @@ export default class Signup extends Component {
     }
     
     componentDidMount() {
-        document.body.classList.add('hold-transition', 'register-page');
+        document.body.classList.add('hold-transition', 'login-page');
         window.jQuery = $;
         window.$ = $;
         global.jQuery = $;
@@ -52,27 +52,26 @@ export default class Signup extends Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
-        this.setState({redirect: true});
-
-        axios.post('http://localhost:4000/register_tenant', {
+        
+        axios.post('http://localhost:4000/login', {
             tenantId: this.state.tenantId,
             email: this.state.email,
             password: this.state.password
         })
         .then(function (response) {
             if (response.data.success) {
-
+                this.state.setState({loginSuccess: true});
             }
         })
         .catch(function (error) {
             console.log(error);
         });
-
+        
+        event.preventDefault();
     }
-
+    
     render() {
-        if (this.state.redirect) {
+        if (this.state.loginSuccess) {
             return (
                 <Redirect to="/"/>
             )
@@ -85,7 +84,7 @@ export default class Signup extends Component {
                     </div>
 
                     <div className="register-box-body">
-                        <p className="login-box-msg">Register a new membership</p>
+                        <p className="login-box-msg">Login</p>
 
                         <form onSubmit={this.handleSubmit}>
                             <div className="form-group has-feedback">
@@ -105,20 +104,10 @@ export default class Signup extends Component {
                             </div>
                             <div className="row">
                                 <div className="col-xs-12">
-                                    <button type="submit" className="btn btn-block btn-primary btn-block btn-flat">Register</button>
+                                    <button type="submit" className="btn btn-block btn-primary btn-block btn-flat">Login</button>
                                 </div>
                             </div>
                         </form>
-
-                        <div className="social-auth-links text-center">
-                        <p>- OR -</p>
-                        <a href="#" className="btn btn-block btn-social btn-facebook btn-flat"><i className="fa fa-facebook"></i> Sign up using
-                            Facebook</a>
-                        <a href="#" className="btn btn-block btn-social btn-google btn-flat"><i className="fa fa-google-plus"></i> Sign up using
-                            Google+</a>
-                        </div>
-
-                        <a href="login.html" className="text-center">I already have a membership</a>
                     </div>
                 </div>
                 <Scripts/>

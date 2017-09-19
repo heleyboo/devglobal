@@ -17,6 +17,8 @@ import '../public/dist/css/AdminLTE.css';
 import '../public/dist/css/skins/_all-skins.min.css';
 import $ from 'jquery';
 import Signup from './components/screens/signup.js';
+import Login from './components/screens/login.js';
+import Home from './components/screens/home.js';
 
 class App extends Component {
 
@@ -37,18 +39,13 @@ class App extends Component {
       <div>
         <Route exact path="/" component={Home}/>
         <Route path="/about" component={Signup}/>
+        <Route path="/login" component={Login}/>
       </div>
       // <Redirect  to='/dashboard'/>
 
     );
   }
 }
-
-const Home = () => (
-  <div>
-    <Link to="/about">About</Link>
-  </div>
-)
 
 const About = () => (
   <div>
