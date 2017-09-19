@@ -16,16 +16,17 @@ import '../public/bower_components/Ionicons/css/ionicons.min.css';
 import '../public/dist/css/AdminLTE.css';
 import '../public/dist/css/skins/_all-skins.min.css';
 import $ from 'jquery';
+import Signup from './components/screens/signup.js';
 
 class App extends Component {
 
   componentDidMount() {
-    document.body.classList.add('hold-transition', 'skin-blue', 'sidebar-mini');
-    document.getElementById('root').classList.add('wrapper');
-    // var script = document.createElement('script');
-    // script.src = 'https://adminlte.io/themes/AdminLTE/bower_components/jquery/dist/jquery.min.js';
-    // script.async = true;
-    // document.body.appendChild(script);
+    // document.body.classList.add('hold-transition', 'skin-blue', 'sidebar-mini');
+    // document.getElementById('root').classList.add('wrapper');
+    // // var script = document.createElement('script');
+    // // script.src = 'https://adminlte.io/themes/AdminLTE/bower_components/jquery/dist/jquery.min.js';
+    // // script.async = true;
+    // // document.body.appendChild(script);
     window.jQuery = $;
     window.$ = $;
     global.jQuery = $;
@@ -34,60 +35,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header/>
-        <Sidebar/>
-        <div className='content-wrapper'>
-            <section className='content-header'>
-            <h1>
-                Blank page
-                <small>it all starts here</small>
-              </h1>
-              <ol className="breadcrumb">
-                <li><a href="#"><i className="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Examples</a></li>
-                <li className="active">Blank page</li>
-              </ol>
-            </section>
-            <section className="content-body">
-
-              <div className="box">
-                <div className="box-header with-border">
-                  <h3 className="box-title">Title</h3>
-
-                  <div className="box-tools pull-right">
-                    <button type="button" className="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                            title="Collapse">
-                      <i className="fa fa-minus"></i></button>
-                    <button type="button" className="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                      <i className="fa fa-times"></i></button>
-                  </div>
-                </div>
-                <div className="box-body">
-                  Start creating your amazing application!
-                </div>
-                <div className="box-footer">
-                  Footer
-                </div>
-              </div>
-              <Route exact path="/" component={Home}/>
-              <Route path="/about" component={About}/>
-            </section>
-            
-        </div>
-
-        <footer className="main-footer">
-          <div className="pull-right hidden-xs">
-            <b>Version</b> 2.4.0
-          </div>
-          <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-          reserved.
-          <Script url='https://adminlte.io/themes/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js'/>
-          <Script url='https://adminlte.io/themes/AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js'/>
-          <Script url='https://adminlte.io/themes/AdminLTE/bower_components/fastclick/lib/fastclick.js'/>
-          <Script url='https://adminlte.io/themes/AdminLTE/dist/js/adminlte.min.js'/>
-          <Script url='https://adminlte.io/themes/AdminLTE/dist/js/demo.js'/>
-        </footer>
+        <Route exact path="/" component={Home}/>
+        <Route path="/about" component={Signup}/>
       </div>
+      // <Redirect  to='/dashboard'/>
 
     );
   }
@@ -95,7 +46,7 @@ class App extends Component {
 
 const Home = () => (
   <div>
-    <h2>Home</h2>
+    <Link to="/about">About</Link>
   </div>
 )
 
